@@ -1,11 +1,11 @@
 import { Tabs } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import { SystemBars } from "react-native-edge-to-edge";
-import useTheme from '../../store/useTheme'
+import useTheme from '../../store/useTheme';
 
 
 export default function Layout() {
-  const {colors} = useTheme();
+    const { colors } = useTheme();
     return (
       <>
         <SystemBars style={colors.statusBarStyle} />
@@ -13,7 +13,6 @@ export default function Layout() {
           screenOptions={{
             tabBarStyle: {
               backgroundColor: colors.background,
-              setOffset: 0,
               borderTopWidth: 0,
             },
             tabBarActiveTintColor: colors.accentPrimary,
@@ -24,8 +23,8 @@ export default function Layout() {
             name="index"
             options={{
               headerShown: false,
-              tabBarIcon: () => (
-                <Ionicons name="home-outline" size={24} color="grey" />
+              tabBarIcon: ({color , focused}) => (
+                <Ionicons name={focused ? 'home' : 'home-outline'} size={24} color={color} />
               ),
             }}
           />
@@ -33,8 +32,8 @@ export default function Layout() {
             name='category'
             options={{
               headerShown: false,
-              tabBarIcon: () => (
-                <Ionicons name="grid-outline" size={24} color="grey" />
+              tabBarIcon: ({color, focused}) => (
+                <Ionicons name={focused ? 'grid' : 'grid-outline'} size={24} color={color} />
               ),
             }}
             /> 
@@ -42,8 +41,8 @@ export default function Layout() {
             name="favorite"
             options={{
               headerShown: false,
-              tabBarIcon: () => (
-                <Ionicons name="timer-outline" size={24} color="grey" />
+              tabBarIcon: ({color, focused}) => (
+                <Ionicons name={focused ? 'timer' : 'timer-outline'} size={24} color={color} />
               ),
             }}
           />
@@ -51,8 +50,8 @@ export default function Layout() {
             name="profile"
             options={{
               headerShown: false,
-              tabBarIcon: () => (
-                <Ionicons name="person-outline" size={24} color="grey" />
+              tabBarIcon: ({color, focused}) => (
+                <Ionicons name={focused ? 'person' : 'person-outline'} size={24} color={color} />
               ),
             }}
           />
