@@ -1,12 +1,12 @@
 export const FontSize = {
-    s: 8,
-    sm: 10,
-    m: 12,
-    ml: 14,
-    l: 16,
-    xl: 20,
-    x: 24,
-    xx: 30,
+    caption: 8,
+    tag: 10,
+    bodysmall: 12,
+    body: 14,
+    bodylarge: 16,
+    newsListTitle: 20,
+    carouselTitle: 24,
+    header: 30,
     xxx: 36,
 } 
 
