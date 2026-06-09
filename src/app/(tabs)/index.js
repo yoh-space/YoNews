@@ -5,6 +5,7 @@ import useTheme from "../../store/useTheme";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Header from "../../components/header";
 import Icon from "../../components/icon";
+import Chips from '../../components/chips'
 import SearchInput from "../../components/searchInput";
 const Index = () => {
   const [searchText, setSearchText] = useState("");
@@ -30,6 +31,7 @@ const Index = () => {
       <SearchInput value={searchText} onChangeText={setSearchText} />
 
       {/* Chips */}
+      <Chips />
     </SafeAreaView>
   );
 };
