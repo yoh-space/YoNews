@@ -16,7 +16,6 @@ const createStyles = (colors,fSize, spacing) => StyleSheet.create({
     headerText:{
         fontFamily: 'Syne_800ExtraBold',
         fontSize: fSize.header,
-        marginLeft: spacing.x,
         color: colors.textPrimary
     }
 })

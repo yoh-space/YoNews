@@ -17,7 +17,6 @@ const createStyles = (colors, fSize, spacing) => StyleSheet.create({
     dateText: {
         color: colors.textSecondary,
         fontSize: fSize.tag,
-        marginLeft: spacing.l
     }
 });
 
