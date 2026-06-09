@@ -6,7 +6,6 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import Header from "../../components/header";
 import Icon from "../../components/icon";
 import SearchInput from "../../components/searchInput";
-import Chips from "../../components/chips";
 const Index = () => {
   const [searchText, setSearchText] = useState("");
   const { colors, fSize, spacing, toggleTheme } = useTheme();
@@ -31,7 +30,6 @@ const Index = () => {
       <SearchInput value={searchText} onChangeText={setSearchText} />
 
       {/* Chips */}
-      <Chips/>
     </SafeAreaView>
   );
 };
