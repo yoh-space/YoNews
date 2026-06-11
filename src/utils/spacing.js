@@ -1,7 +1,6 @@
 export const FontSize = {
-    caption: 8,
     tag: 10,
-    bodysmall: 12,
+    caption: 12,
     body: 14,
     bodylarge: 16,
     newsListTitle: 20,
