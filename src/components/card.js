@@ -6,17 +6,19 @@ import { LinearGradient } from "expo-linear-gradient";
 import Tag from "./tag";
 import Caption from "./caption";
 
-const Card = ({ Title }) => {
-  const source = {
-    uri: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bmV3c2xldHRlcnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60",
-  };
+const Card = ({ Title, Image }) => {
+  console.log("Card component received props:", { Title, Image });
   const { colors, fSize, spacing } = useTheme();
   return (
     <Pressable
       onPress={() => alert("Card Pressed")}
       style={[styles.pressable, { borderRadius: spacing.xx }]}
     >
-      <ImageBackground source={source} style={[styles.imageBackground]}>
+      <ImageBackground 
+        source={{ uri: Image }} 
+        onError={(e) => console.log("Image error:", e.nativeEvent)}
+        resizeMode="cover"
+        style={[styles.imageBackground]}>
         <LinearGradient
           colors={["rgba(0,0,0,0.05)", "rgba(0,0,0,0.25)", "rgba(0,0,0,0.82)"]}
           style={[styles.gradient, { padding: spacing.l }]}
@@ -34,20 +36,21 @@ const Card = ({ Title }) => {
 
 const styles = StyleSheet.create({
   pressable: {
-    height: 200,
-    widht: "100%",
+    height: 220,
+    width: "100%",
     overflow: "hidden",
   },
   imageBackground: {
-    flex: 1,
+    width: "100%",
+    height: "100%",
   },
   gradient: {
     flex: 1,
   },
-  contents:{
+  contents: {
     flex: 1,
-    justifyContent: 'flex-end',
-  }
+    justifyContent: "flex-end",
+  },
 });
 
 export default Card;
