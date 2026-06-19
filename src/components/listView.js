@@ -1,4 +1,4 @@
-import {useStat, useEffect} from "react";
+import {useState, useEffect} from "react";
 import { StyleSheet, View, Image, Pressable} from "react-native";
 import Tag from "./tag";
 import Caption from "./caption";
