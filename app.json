@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "myfristapp",
-    "slug": "myfristapp",
+    "name": "yonews",
+    "slug": "yonews",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

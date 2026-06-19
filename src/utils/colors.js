@@ -31,7 +31,7 @@ export const lightColors = {
   danger: '#EF4444',
 
   // Overlays (used over images)
-  overlayLight: 'rgba(255, 255, 255, 0.73)',
+  overlayLight: 'rgba(207, 207, 207, 0.26)',
   overlayDark: 'rgba(0, 0, 0, 0.7)',
 
   // Skeleton / placeholder
@@ -71,7 +71,7 @@ export const darkColors = {
   danger: '#EF4444',
 
   // Overlays
-  overlayLight: 'rgba(255, 255, 255, 0.48)',
+  overlayLight: 'rgba(255, 255, 255, 0.18)',
   overlayDark: 'rgba(0, 0, 0, 0.75)',
 
   // Skeleton

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { StyleSheet, View, Alert, FlatList } from "react-native";
+import { StyleSheet, View, Alert, FlatList,Text,Pressable } from "react-native";
 import Date from "../../components/date";
 import useTheme from "../../store/useTheme";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -8,6 +8,9 @@ import Icon from "../../components/icon";
 import Chips from "../../components/chips";
 import SearchInput from "../../components/searchInput";
 import Card from "../../components/card";
+import {DATA} from "../../data/data";
+import ListView from "../../components/listView";
+
 const Index = () => {
   const [searchText, setSearchText] = useState("");
   const { colors, fSize, spacing, toggleTheme, themeMode } = useTheme();
@@ -16,20 +19,17 @@ const Index = () => {
   const notification = () => {
     Alert.alert("Notifications", "You have no new notifications.");
   };
-  const DATA = [
-    {
-      id: "1",
-      title: "First Item",
-    },
-    {
-      id: "2",
-      title: "Second Item",
-    },
-    {
-      id: "3",
-      title: "Third Item",
-    },
-  ];
+
+  const ListHeader = () => {
+    return(
+      <View style={styles.headerText}>
+        <Text style={styles.titleText}>Latest Stories</Text>
+        <Pressable onPress={() => {Alert.alert("See all", "You clicked on See all")}}>
+          <Text style={{color: colors.accentPrimary}}>See all</Text>
+        </Pressable>
+      </View>
+    )
+  }
   return (
     <SafeAreaView style={styles.container} edges={['top', 'left', 'right']}>
       <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
@@ -49,9 +49,11 @@ const Index = () => {
           <>
           <SearchInput value={searchText} onChangeText={setSearchText} />
           <Chips />
+          <Card Title={"Top Stories"} />
+          <ListHeader />
           </>
         }
-        renderItem={({item }) => <Card Title={item.title}/>}
+        renderItem={({item}) =>(<ListView title={item.title} postedTime={item.postedTime} readTime={item.readTime} tagLable={item.tagLable} imageUrl={item.imageUrl} />)}
         showsVerticalScrollIndicator={false}
       />
       
@@ -67,6 +69,18 @@ const createStyles = (colors, fSize, spacing) =>
       flex: 1,
       paddingHorizontal: spacing.l,
     },
+    headerText: {
+      flex: 1,
+      flexDirection: "row",
+      justifyContent: "space-between",
+      alignItems: "center",
+      marginTop: spacing.xx
+    },
+    titleText: {
+      fontSize: fSize.newsListTitle,
+      fontFamily: 'Syne_600SemiBold',
+      color: colors.textPrimary,
+    }
   });
 
 export default Index;

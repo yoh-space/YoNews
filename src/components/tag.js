@@ -1,27 +1,29 @@
 import React from "react";
 import { StyleSheet, View, Text } from "react-native";
 import useTheme from "../store/useTheme";
-const Tag = ({ tagLabel }) => {
+const Tag = ({ tagLabel, color }) => {
   const { colors, spacing, fSize } = useTheme();
   return (
     <View
       style={{
         flexDirection: "row",
-        alignSelf: 'flex-start',
+        alignSelf: "flex-start",
         alignItems: "center",
-        backgroundColor: colors.liveBadge,
+        backgroundColor: color || colors.liveBadge,
         paddingHorizontal: spacing.m,
         paddingVertical: spacing.s,
         borderRadius: spacing.m,
       }}
     >
-      <View
-        style={[
-          styles.dot,
-          { backgroundColor: "white", marginRight: spacing.s },
-        ]}
-      />
-      <Text style={{ color: "white", fontSize: fSize.tag }}>{tagLabel}</Text>
+      {!color && (
+        <View
+          style={[
+            styles.dot,
+            { backgroundColor: "white", marginRight: spacing.s },
+          ]}
+        />
+      )}
+      <Text style={{ color: color ? colors.accentPrimary : "white", fontSize: fSize.tag }}>{tagLabel}</Text>
     </View>
   );
 };
