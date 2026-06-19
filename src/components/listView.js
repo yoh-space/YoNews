@@ -17,9 +17,10 @@ useEffect(() => {
       if(bookmarks) {
         const parsedBookmarks = JSON.parse(bookmarks);
         const isBookmarked = parsedBookmarks.some(
-          (article) => article.title === title
+          (articleTitle) => { const result = articleTitle === title;
+            return result;
+          } 
         );
-        console.log("Parsed Bookmarks:", title, parsedBookmarks);
 
         setIsBookmarked(isBookmarked);
       }
@@ -33,10 +34,8 @@ useEffect(() => {
   const handleBookmarkPress = () => {
     if (isBookmarked) {
         removeBookmark(title);
-        console.log("Bookmark removed:", title);
     } else {
         addBookmark(title);
-        console.log("Bookmark added:", title);
     }
     setIsBookmarked(!isBookmarked);
   }
