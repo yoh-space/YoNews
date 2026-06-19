@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useStat, useEffect} from "react";
 import { StyleSheet, View, Image, Pressable} from "react-native";
 import Tag from "./tag";
 import Caption from "./caption";
@@ -17,13 +17,24 @@ const ListView = ({
 }) => {
   const { colors, fSize, spacing } = useTheme();
   const { addBookmark, removeBookmark } = useBookmarkStore();
-  const [bookmarked, setBookmarked] = useState(getItem("bookmarks").then((bookmarks) => {
-    if (bookmarks) {
-      const parsedBookmarks = JSON.parse(bookmarks);
-      return parsedBookmarks.some((article) => article.title === title);
-    }
-    return false;
-  }));
+  useEffect(() => {
+    const checkBookmark = async () => {
+      const bookmarks = await getItem("bookmarks");
+      if(bookmarks) {
+        const parsedBookmarks = JSON.parse(bookmarks);
+        const isBookmarked = parsedBookmarks.some(
+          (article) => article.title === title
+        );
+        setBookmarked(isBookmarked);
+      }
+      else {
+        setBookmarked(false);
+      }
+    };
+
+    checkBookmark();
+  }, [title]);
+  const [bookmarked, setBookmarked] = useState(false);
 
   const handleBookmark = () => {
     if (bookmarked) {
