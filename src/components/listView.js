@@ -1,11 +1,12 @@
 import {useState} from "react";
-import { StyleSheet, View, Image } from "react-native";
+import { StyleSheet, View, Image, Pressable} from "react-native";
 import Tag from "./tag";
 import Caption from "./caption";
 import useTheme from "../store/useTheme";
 import { Ionicons } from "@expo/vector-icons";
 import { Text } from "react-native";
 import useBookmarkStore from "../store/useBookmarkStore";
+import { getItem } from "../utils/storage";
 
 const ListView = ({
   tagLabel,
@@ -15,8 +16,14 @@ const ListView = ({
   imageUrl,
 }) => {
   const { colors, fSize, spacing } = useTheme();
-  const { addBookmark, removeBookmark, isBookmarked } = useBookmarkStore();
-  const [bookmarked, setBookmarked] = useState(false);
+  const { addBookmark, removeBookmark } = useBookmarkStore();
+  const [bookmarked, setBookmarked] = useState(getItem("bookmarks").then((bookmarks) => {
+    if (bookmarks) {
+      const parsedBookmarks = JSON.parse(bookmarks);
+      return parsedBookmarks.some((article) => article.title === title);
+    }
+    return false;
+  }));
 
   const handleBookmark = () => {
     if (bookmarked) {
@@ -40,6 +47,7 @@ const ListView = ({
         },
       ]}
     >
+    <Pressable onPress={() => console.log(`Pressed on article: ${title}`)}>
       <Image
         source={{ uri: imageUrl }}
         style={[
@@ -48,7 +56,9 @@ const ListView = ({
             borderRadius: spacing.m,
           },
         ]}
-      />
+      />      
+    </Pressable>
+
 
       <View style={styles.content}>
         <Tag tagLabel={tagLabel} />

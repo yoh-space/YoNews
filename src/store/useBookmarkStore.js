@@ -13,7 +13,7 @@ const useBookmarkStore = create((set, get) => ({
       bookmarks: updatedBookmarks,
     });
 
-    await setItem("bookmarks", updatedBookmarks);
+    await setItem("bookmarks", JSON.stringify(updatedBookmarks));
   },
 
   removeBookmark: async (articleId) => {
@@ -26,7 +26,7 @@ const useBookmarkStore = create((set, get) => ({
     });
 
     await removeItem("bookmarks");
-    await setItem("bookmarks", updatedBookmarks);
+    await setItem("bookmarks", JSON.stringify(updatedBookmarks));
   },
 }));
 
