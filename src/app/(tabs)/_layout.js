@@ -2,6 +2,8 @@ import { Tabs } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import { SystemBars } from "react-native-edge-to-edge";
 import useTheme from "../../store/useTheme";
+import { useEffect } from "react";
+import {getItem} from '../../utils/storage';
 import {
   useFonts,
   Syne_400Regular,
@@ -19,7 +21,21 @@ export default function Layout() {
     Syne_700Bold,
     Syne_800ExtraBold,
   });
-  const { colors } = useTheme();
+  const { colors, setTheme } = useTheme();
+
+  useEffect(()=>{
+    const LoadTheme = async () => {
+      const storedTheme = await getItem('themeMode');
+      if(storedTheme)
+      {
+        setTheme(storedTheme);
+      }
+      else{
+        return null; // No stored theme found, do nothing
+      }
+    }
+    LoadTheme();
+  }, []);
 
   if (!fontsLoaded) {
     return null;

@@ -1,22 +1,23 @@
 import {create} from 'zustand';
 import themes from '../utils/colors';
-import sfConstraints from '../utils/spacing'
+import sfConstraints from '../utils/spacing';
+import { setItem, getItem } from '../utils/storage';
 
 
 
-const useTheme = create((set)=> {
+const useTheme = create((set, get)=> {
     return { 
         themeMode: 'light',
         colors: themes.light,
         fSize: sfConstraints.fontSize,
         spacing: sfConstraints.spacing,
-        toggleTheme: () => set((currentMode)=> {
-            if(currentMode.themeMode === 'dark') {
-                return { themeMode: 'light', colors: themes.light };
-            } else {
-                return { themeMode: 'dark', colors: themes.dark };
-            }
-        })
+        setTheme: (storedTheme) => set({themeMode: storedTheme, colors: themes[storedTheme]}),
+        toggleTheme: async () => {
+            const currentTheme = get().themeMode;
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            await setItem('themeMode', newTheme);
+            set({themeMode: newTheme, colors: themes[newTheme]}); 
+        }
     }
 });
 

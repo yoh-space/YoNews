@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, View, Text } from "react-native";
 import useTheme from "../store/useTheme";
-const Tag = ({ tagLabel, color }) => {
+const Tag = ({ tagLabel, color, textColor, bgColor }) => {
   const { colors, spacing, fSize } = useTheme();
   return (
     <View
@@ -9,13 +9,13 @@ const Tag = ({ tagLabel, color }) => {
         flexDirection: "row",
         alignSelf: "flex-start",
         alignItems: "center",
-        backgroundColor: color ? color: 'transparent',
+        backgroundColor: bgColor || 'transparent',
         paddingHorizontal: spacing.m,
         paddingVertical: spacing.s,
         borderRadius: spacing.m,
       }}
     >
-      {color && (
+      {textColor && (
         <View
           style={[
             styles.dot,
@@ -23,7 +23,7 @@ const Tag = ({ tagLabel, color }) => {
           ]}
         />
       )}
-      <Text style={{ color: colors.accentPrimary, fontSize: fSize.tag }}>{tagLabel}</Text>
+      <Text style={{ color: textColor || colors.accentPrimary, fontSize: fSize.tag }}>{tagLabel}</Text>
     </View>
   );
 };
