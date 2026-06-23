@@ -37,7 +37,7 @@ const Index = () => {
           <Date />
           <Header header={"YoNews"} />
         </View>
-        <View style={{ flexDirection: "row" }}>
+        <View style={{ flexDirection: "row", alignSelf: 'flex-end', }}>
           <Icon name={Name} action={toggleTheme} />
           <Icon name="notifications-outline" action={notification} />
         </View>

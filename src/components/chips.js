@@ -14,16 +14,16 @@ const Chips = () => {
       style={{margin: spacing.l, flexGrow: 0}}>
       {Categories.map((cat) => (
         <Pressable 
-          key={cat}
+          key={cat.title}
           onPress={()=> setSelectedCategory(cat)}
           style={{
             backgroundColor: selectedCategory === cat ? colors.accentPrimary : colors.surfaceSeondary,
             marginRight: spacing.m,
             paddingVertical: spacing.m,
             paddingHorizontal: spacing.m,
-            borderRadius: spacing.s,
+            borderRadius: spacing.m,
           }}>
-          <Text style={{color: selectedCategory === cat ? 'white': colors.textSecondary}}>{cat}</Text>
+          <Text style={{color: selectedCategory === cat ? 'white': colors.textSecondary}}>{cat.title}</Text>
         </Pressable>
       ))}
     </ScrollView>

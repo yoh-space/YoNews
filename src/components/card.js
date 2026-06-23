@@ -23,7 +23,7 @@ const Card = ({ Title, Image }) => {
           colors={["rgba(0,0,0,0.05)", "rgba(0,0,0,0.25)", "rgba(0,0,0,0.82)"]}
           style={[styles.gradient, { padding: spacing.l }]}
         >
-          <Tag tagLabel={"LIVE"} />
+          <Tag tagLabel={"LIVE"} color={colors.danger} textColor={"white"} />
           <View style={styles.contents}>
             <HeroTitle Title={Title} />
             <Caption author={"John Doe"} readTime={"5 min read"} />

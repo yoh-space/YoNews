@@ -71,7 +71,7 @@ export const darkColors = {
   danger: '#EF4444',
 
   // Overlays
-  overlayLight: 'rgba(255, 255, 255, 0.48)',
+  overlayLight: 'rgba(165, 162, 162, 0.15)',
   overlayDark: 'rgba(0, 0, 0, 0.75)',
 
   // Skeleton
