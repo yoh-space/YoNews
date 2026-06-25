@@ -47,7 +47,7 @@ const Index = () => {
         keyExtractor={(item) => item.id}
         ListHeaderComponent={
           <>
-            <SearchInput value={searchText} onChangeText={setSearchText} />
+            <SearchInput value={searchText} onChangeText={setSearchText} placeHolder={'Search news, topics, authors...'} />
             <Chips />
             <Card Title={heroNews.title} Image={heroNews.image} />
             <ListHeader />
