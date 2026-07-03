@@ -8,13 +8,7 @@ import { Text } from "react-native";
 import useBookmarkStore from "../store/useBookmarkStore";
 import { getItem } from "../utils/storage";
 
-const ListView = ({
-  tagLabel,
-  title,
-  readTime,
-  ago,
-  imageUrl,
-}) => {
+const ListView = ({item}) => {
   const { colors, fSize, spacing } = useTheme();
   const { addBookmark, removeBookmark } = useBookmarkStore();
   useEffect(() => {
@@ -23,7 +17,7 @@ const ListView = ({
       if(bookmarks) {
         const parsedBookmarks = JSON.parse(bookmarks);
         const isBookmarked = parsedBookmarks.some(
-          (article) => article.title === title
+          (article) => article.title === item.title
         );
         setBookmarked(isBookmarked);
       }
@@ -33,17 +27,17 @@ const ListView = ({
     };
 
     checkBookmark();
-  }, [title]);
+  }, [item]);
   const [bookmarked, setBookmarked] = useState(false);
 
   const handleBookmark = () => {
     if (bookmarked) {
-      removeBookmark(title);
-      console.log(`Removed bookmark for: ${title}`);
+      removeBookmark(item);
+      console.log(`Removed bookmark for: ${item.title}`);
       setBookmarked(false);
     } else {
-      addBookmark({ title, imageUrl, tagLabel, readTime, ago });
-      console.log(`Added bookmark for: ${title}`);
+      addBookmark(item);
+      console.log(`Added bookmark for: ${item.title}`);
       setBookmarked(true);
     }
   };
@@ -60,7 +54,7 @@ const ListView = ({
     >
     <Pressable onPress={() => console.log(`Pressed on article: ${title}`)}>
       <Image
-        source={{ uri: imageUrl }}
+        source={{ uri: item.imageUrl }}
         style={[
           styles.image,
           {
@@ -72,7 +66,7 @@ const ListView = ({
 
 
       <View style={styles.content}>
-        <Tag tagLabel={tagLabel} />
+        <Tag tagLabel={item.tagLabel} />
 
         <Text
           numberOfLines={2}
@@ -84,11 +78,11 @@ const ListView = ({
             },
           ]}
         >
-          {title}
+          {item.title}
         </Text>
 
         <View style={styles.footer}>
-          <Caption ago={ago} color={colors.textSecondary || "#A9A9A9"} readTime={readTime} />
+          <Caption ago={item.ago} color={colors.textSecondary || "#A9A9A9"} readTime={item.readTime} />
 
           <Ionicons
             onPress={handleBookmark}

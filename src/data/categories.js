@@ -1,5 +1,13 @@
 export const Categories = [
     {
+        id: 0,
+        categoryName: 'All',
+        iconName: '',
+        iconColor: '',
+        iconBackground: '',
+        articleCount: 10,
+    },
+    {
         id: 1,
         categoryName: 'Trending',
         iconName: 'trending-up-outline',

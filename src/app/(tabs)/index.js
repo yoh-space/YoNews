@@ -53,7 +53,8 @@ const Index = () => {
             <ListHeader />
           </>
         }
-        renderItem={({item}) => (<ListView imageUrl={item.image} title={item.title} tagLabel={item.tagLabel} ago={item.ago} readTime={item.readTime} />)}
+        renderItem={({item}) => (
+        <ListView item={item} />)}
         showsVerticalScrollIndicator={false}
       />
     </SafeAreaView>

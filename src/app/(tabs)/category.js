@@ -12,7 +12,7 @@ const Category = () => {
   const styles = createStyles(colors, fSize, spacing);
   const [searchCategory, setSearchCategory] = useState("");
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.container} edges={['top','left','right']}>
       <Header header={"Category"} />
       <Text style={{ color: colors.textSecondary, fontSize: fSize.body }}>
         Explore stories accross the tech world
@@ -23,10 +23,11 @@ const Category = () => {
         placeHolder={"Search categories"}
       />
       <FlatList
-        data={Categories}
+        data={Categories.splice(1)}
         keyExtractor={(item) => item.id}
         numColumns={2}
         style={{}}
+        showsVerticalScrollIndicator={false}
         contentContainerStyle={{ padding: spacing.l, gap: spacing.m }}
         columnWrapperStyle={{ justifyContent: "space-between", gap: spacing.m }}
         renderItem={({ item }) => (

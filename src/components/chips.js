@@ -11,7 +11,7 @@ const Chips = () => {
     <ScrollView 
       horizontal
       showsHorizontalScrollIndicator={false}
-      style={{margin: spacing.l, flexGrow: 0}}>
+      style={{marginTop: spacing.m,marginBottom: spacing.m, flexGrow: 0}}>
       {Categories.map((cat) => (
         <Pressable 
           key={cat.id}
@@ -21,7 +21,7 @@ const Chips = () => {
             marginRight: spacing.m,
             paddingVertical: spacing.m,
             paddingHorizontal: spacing.m,
-            borderRadius: spacing.s,
+            borderRadius: spacing.l,
           }}>
           <Text style={{color: selectedCategory === cat.categoryName ? 'white': colors.textSecondary}}>{cat.categoryName}</Text>
         </Pressable>

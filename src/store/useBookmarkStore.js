@@ -3,6 +3,7 @@ import { setItem, getItem, removeItem } from "../utils/storage";
 
 const useBookmarkStore = create((set, get) => ({
   bookmarks: [],
+  setBookmarks: (bookmarks) => set({bookmarks: bookmarks}),
   addBookmark: async (article) => {
     const updatedBookmarks = [
       ...get().bookmarks,

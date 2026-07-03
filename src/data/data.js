@@ -2,7 +2,7 @@
     {
       id: "1",
       readTime: "5 min read",
-      ago: "30 minutes ago", // 30 minutes ago
+      ago: "30 min ago", // 30 minutes ago
       tagLabel: "Gadgets",
       title: "Apple Unveils New iPhone 15 with Revolutionary Features",
       image:
