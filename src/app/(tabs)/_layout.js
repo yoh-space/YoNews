@@ -87,7 +87,7 @@ export default function Layout() {
             headerShown: false,
             tabBarIcon: ({ color, focused }) => (
               <Ionicons
-                name={focused ? "timer" : "timer-outline"}
+                name={focused ? "heart" : "heart-outline"}
                 size={24}
                 color={color}
               />
