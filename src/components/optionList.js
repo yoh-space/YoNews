@@ -10,8 +10,8 @@ const OptionList = ({ preferences }) => {
       style={{
         marginTop: spacing.l,
         backgroundColor: colors.surfaceBg,
-        borderTopLeftRadius: 10,
-        borderTopRightRadius: 10,
+        borderTopLeftRadius: spacing.l,
+        borderTopRightRadius: spacing.l,
       }}
       showsVerticalScrollIndicator={false}
     >
@@ -24,7 +24,6 @@ const OptionList = ({ preferences }) => {
             justifyContent: "space-between",
             backgroundColor: colors.surfaceBg,
             padding: spacing.m,
-            bottomBorderWidth: 1,
             borderBottomWidth: index === preferences.length - 1 ? 0 : 1,
             borderColor: colors.surfaceSecondary,
           }}
@@ -57,7 +56,6 @@ const OptionList = ({ preferences }) => {
             color={colors.textSecondary}
             action={pref.action}
             iconBackground={'transparent'}
-            style={{ marginLeft: "auto" }}
           />
         </View>
       ))}

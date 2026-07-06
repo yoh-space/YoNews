@@ -22,14 +22,14 @@ const ProfileCard = ({ person }) => {
         style={{
           width: 60,
           height: 60,
-          borderRadius: 30,
+          borderRadius: 20,
           marginRight: spacing.m,
         }}
       />
-      <View style={{ flexDirection: "column" }}>
+      <View style={{marginLeft: spacing.m }}>
         <Text
           style={{
-            fontSize: fSize.m,
+            fontSize: fSize.bodylarge,
             fontFamily: "Syne_700Bold",
             color: colors.textPrimary,
           }}
@@ -38,7 +38,7 @@ const ProfileCard = ({ person }) => {
         </Text>
         <Text
           style={{
-            fontSize: fSize.s,
+            fontSize: fSize.caption,
             fontFamily: "Syne_400Regular",
             color: colors.textSecondary,
             marginTop: spacing.s,
@@ -46,7 +46,7 @@ const ProfileCard = ({ person }) => {
         >
           {person.email}
         </Text>
-        <View style={{ alignSelf: 'flex-start', padding: spacing.s, backgroundColor: colors.surfaceSecondary, borderRadius: 5, marginTop: spacing.s, alignItems: 'center', justifyContent: 'center' }}>
+        <View style={{ alignSelf: 'flex-start', padding: spacing.sm, backgroundColor: colors.surfaceSecondary, borderRadius: spacing.m, marginTop: spacing.s, alignItems: 'center', justifyContent: 'center' }}>
           <Text
             style={{
               fontSize: fSize.caption,

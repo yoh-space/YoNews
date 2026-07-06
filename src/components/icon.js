@@ -18,7 +18,7 @@ const createStyles = (iconBackground, colors, fSize, spacing) => StyleSheet.crea
         backgroundColor: iconBackground  || colors.surfaceSecondary,
         height: 30,
         width: 30,
-        borderRadius: 10,
+        borderRadius: spacing.m,
         margin: spacing.s,
         alignSelf: 'flex-end',
         justifyContent: 'center',
