@@ -5,22 +5,14 @@ import useTheme from "../../store/useTheme";
 import Header from "../../components/header";
 import Chips from "../../components/chips";
 import ListView from "../../components/listView";
-import { getItem } from "../../utils/storage";
 import useBookmarkStore from "../../store/useBookmarkStore";
 const Favorite = () => {
   const articleLength = 2;
   const { colors, fSize, spacing } = useTheme();
   const styles = createStyles(colors, fSize, spacing);
-  const { bookmarks, setBookmarks, removeBookmark, addBookmark } = useBookmarkStore();
+  const { bookmarks, removeBookmark, addBookmark,loadBookmarks } = useBookmarkStore();
+
   useEffect(() => {
-    const loadBookmarks = async () => {
-      const storedBookmarks = await getItem("bookmarks");
-      const parsedBookmarks = storedBookmarks
-        ? JSON.parse(storedBookmarks)
-        : [];
-      setBookmarks(parsedBookmarks);
-      console.log(`parsedBookmarks: ${JSON.stringify(bookmarks)}`);
-    };
     loadBookmarks();
   }, [removeBookmark, addBookmark]);
   return (
@@ -40,7 +32,7 @@ const Favorite = () => {
       }
       <FlatList
         data={bookmarks}
-        keyExtractor={(item) => item.title}
+        keyExtractor={(item) => item._id}
         renderItem={({ item }) => {
           return (
             <View style={{ paddingHorizontal: spacing.m }}>

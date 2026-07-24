@@ -11,7 +11,7 @@ const useBookmarkStore = create((set, get) => ({
     }
   },
   isBookmarked: (articleId) => {
-    return get().bookmarks.some((article) => article.id === articleId);
+    return get().bookmarks.some((article) => article._id === articleId);
   },
   addBookmark: async (article) => {
     const updatedBookmarks = [
@@ -27,7 +27,7 @@ const useBookmarkStore = create((set, get) => ({
 
   removeBookmark: async (articleId) => {
     const updatedBookmarks = get().bookmarks.filter(
-      (article) => article.id !== articleId
+      (article) => article._id !== articleId
     );
 
     set({
