@@ -1,6 +1,6 @@
 import { query, mutation } from "./_generated/server";
 import { v } from "convex/values";
-import { DATA } from "./data";
+import DATA from "./news.js";
 
 export const getAllArticles = query({
   handler: async (ctx) => {
@@ -9,11 +9,12 @@ export const getAllArticles = query({
   },
 });
 
-export const createArticle = mutation({
+export const createArticles = mutation({
   handler: async (ctx) => {
-    for(let i = 0; i < DATA.length; i++) {
-      await ctx.db.insert("articles", DATA[i]);
+    for( let i = 0; i < DATA.length; i++) {
+      ctx.db.insert("articles", DATA[i]);
     }
+    return "All articles created successfully";
   },
 
 });

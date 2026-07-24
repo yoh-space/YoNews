@@ -13,7 +13,9 @@ const schema = defineSchema({
         content: v.string(),
         categoryName: v.string(),
         imageUrl: v.optional(v.string()),
-        timePosted: v.string(),
+        ago: v.optional(v.string()), 
+        readTime: v.optional(v.string()), 
+        timePosted: v.optional(v.string()),    
     }),
     category: defineTable({
         name: v.string(),

@@ -13,6 +13,10 @@ import {
   Syne_800ExtraBold,
 } from "@expo-google-fonts/syne";
 
+import { ConvexProvider, ConvexReactClient } from "convex/react";
+
+const convex = new ConvexReactClient(process.env.EXPO_PUBLIC_CONVEX_URL);
+
 export default function Layout() {
   const [fontsLoaded] = useFonts({
     Syne_400Regular,
@@ -42,7 +46,7 @@ export default function Layout() {
   }
 
   return (
-    <>
+    <ConvexProvider client={convex}>
       <SystemBars style={colors.statusBarStyle} />
       <Tabs
         screenOptions={{
@@ -108,6 +112,6 @@ export default function Layout() {
           }}
         />
       </Tabs>
-    </>
+    </ConvexProvider>
   );
 }
