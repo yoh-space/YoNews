@@ -61,7 +61,7 @@ export default function Layout() {
         <Tabs.Screen
           name="index"
           options={{
-            tabLabel: "Home",
+            title: "Home",
             headerShown: false,
             tabBarIcon: ({ color, focused }) => (
               <Ionicons
@@ -75,6 +75,7 @@ export default function Layout() {
         <Tabs.Screen
           name="category"
           options={{
+            title:"Categories",
             headerShown: false,
             tabBarIcon: ({ color, focused }) => (
               <Ionicons
@@ -88,6 +89,7 @@ export default function Layout() {
         <Tabs.Screen
           name="favorite"
           options={{
+            title: "Favorite",
             headerShown: false,
             tabBarIcon: ({ color, focused }) => (
               <Ionicons
@@ -101,6 +103,7 @@ export default function Layout() {
         <Tabs.Screen
           name="profile"
           options={{
+            title: "Profile",
             headerShown: false,
             tabBarIcon: ({ color, focused }) => (
               <Ionicons

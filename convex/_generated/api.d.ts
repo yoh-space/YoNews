@@ -9,6 +9,8 @@
  */
 
 import type * as articles from "../articles.js";
+import type * as cat from "../cat.js";
+import type * as categories from "../categories.js";
 import type * as news from "../news.js";
 import type * as users from "../users.js";
 
@@ -20,6 +22,8 @@ import type {
 
 declare const fullApi: ApiFromModules<{
   articles: typeof articles;
+  cat: typeof cat;
+  categories: typeof categories;
   news: typeof news;
   users: typeof users;
 }>;
