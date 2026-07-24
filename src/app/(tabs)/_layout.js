@@ -13,6 +13,10 @@ import {
   Syne_800ExtraBold,
 } from "@expo-google-fonts/syne";
 
+import { ConvexProvider, ConvexReactClient } from "convex/react";
+
+const convex = new ConvexReactClient(process.env.EXPO_PUBLIC_CONVEX_URL);
+
 export default function Layout() {
   const [fontsLoaded] = useFonts({
     Syne_400Regular,
@@ -42,7 +46,7 @@ export default function Layout() {
   }
 
   return (
-    <>
+    <ConvexProvider client={convex}>
       <SystemBars style={colors.statusBarStyle} />
       <Tabs
         screenOptions={{
@@ -57,7 +61,7 @@ export default function Layout() {
         <Tabs.Screen
           name="index"
           options={{
-            tabLabel: "Home",
+            title: "Home",
             headerShown: false,
             tabBarIcon: ({ color, focused }) => (
               <Ionicons
@@ -71,6 +75,7 @@ export default function Layout() {
         <Tabs.Screen
           name="category"
           options={{
+            title:"Categories",
             headerShown: false,
             tabBarIcon: ({ color, focused }) => (
               <Ionicons
@@ -84,10 +89,11 @@ export default function Layout() {
         <Tabs.Screen
           name="favorite"
           options={{
+            title: "Favorite",
             headerShown: false,
             tabBarIcon: ({ color, focused }) => (
               <Ionicons
-                name={focused ? "timer" : "timer-outline"}
+                name={focused ? "heart" : "heart-outline"}
                 size={24}
                 color={color}
               />
@@ -97,6 +103,7 @@ export default function Layout() {
         <Tabs.Screen
           name="profile"
           options={{
+            title: "Profile",
             headerShown: false,
             tabBarIcon: ({ color, focused }) => (
               <Ionicons
@@ -108,6 +115,6 @@ export default function Layout() {
           }}
         />
       </Tabs>
-    </>
+    </ConvexProvider>
   );
 }

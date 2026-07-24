@@ -1,0 +1,51 @@
+export const Categories = [
+    {
+        categoryName: 'All',
+        iconName: '',
+        iconColor: '',
+        iconBackground: '',
+        articleCount: 10,
+    },
+    {
+        categoryName: 'Trending',
+        iconName: 'trending-up-outline',
+        iconColor: '#FF6B6B',
+        iconBackground: '#ff000015',
+        articleCount: 120,
+    },
+    {
+        categoryName: 'Technology',
+        iconName: 'laptop-outline',
+        iconColor: '#4ECDC4',
+        iconBackground: '#00ffea18',
+        articleCount: 80,
+    },
+    {
+        categoryName: 'Business',
+        iconName: 'briefcase-outline',
+        iconColor: '#FFD93D',
+        iconBackground: '#ffc40017',
+        articleCount: 60,
+    },
+    {
+        categoryName: 'Entertainment',
+        iconName: 'film-outline',
+        iconColor: '#FF6B6B',
+        iconBackground: '#ff000014',
+        articleCount: 90,
+    },
+    {
+        categoryName: 'Sports',
+        iconName: 'football-outline',
+        iconColor: '#4ECDC4',
+        iconBackground: '#00ffea11',
+        articleCount: 70,
+    },
+    {
+        categoryName: 'Health',
+        iconName: 'heart-outline',
+        iconColor: '#FFD93D',
+        iconBackground: '#ffc40016',
+        articleCount: 50,
+    },
+]

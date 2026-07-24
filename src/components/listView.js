@@ -10,29 +10,13 @@ import { getItem } from "../utils/storage";
 
 const ListView = ({item}) => {
   const { colors, fSize, spacing } = useTheme();
-  const { addBookmark, removeBookmark } = useBookmarkStore();
-  useEffect(() => {
-    const checkBookmark = async () => {
-      const bookmarks = await getItem("bookmarks");
-      if(bookmarks) {
-        const parsedBookmarks = JSON.parse(bookmarks);
-        const isBookmarked = parsedBookmarks.some(
-          (article) => article.title === item.title
-        );
-        setBookmarked(isBookmarked);
-      }
-      else {
-        setBookmarked(false);
-      }
-    };
+  const { addBookmark, removeBookmark,isBookmarked } = useBookmarkStore();
 
-    checkBookmark();
-  }, [item]);
   const [bookmarked, setBookmarked] = useState(false);
 
   const handleBookmark = () => {
-    if (bookmarked) {
-      removeBookmark(item);
+    if (isBookmarked(item._id)) {
+      removeBookmark(item._id);
       console.log(`Removed bookmark for: ${item.title}`);
       setBookmarked(false);
     } else {
@@ -66,7 +50,7 @@ const ListView = ({item}) => {
 
 
       <View style={styles.content}>
-        <Tag tagLabel={item.tagLabel} />
+        <Tag categoryName={item.categoryName} />
 
         <Text
           numberOfLines={2}
@@ -86,9 +70,9 @@ const ListView = ({item}) => {
 
           <Ionicons
             onPress={handleBookmark}
-            name={bookmarked ? "bookmark" : "bookmark-outline"}
+            name={isBookmarked(item._id) ? "bookmark" : "bookmark-outline"}
             size={20}
-            color={bookmarked ? colors.accentPrimary || "#007AFF" : colors.textSecondary || "#A9A9A9"}
+            color={isBookmarked(item._id) ? colors.accentPrimary || "#007AFF" : colors.textSecondary || "#A9A9A9"}
           />
         </View>
       </View>

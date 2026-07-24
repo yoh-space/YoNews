@@ -6,11 +6,25 @@ import Header from "../../components/header";
 import SearchInput from "../../components/searchInput";
 import { Categories } from "../../data/categories";
 import CategoryCard from "../../components/categoryCard";
+import { api } from "../../../convex/_generated/api";
+import { useQuery } from "convex/react";
 
 const Category = () => {
+  const categories = useQuery(api.categories.getAllCategories);
+  const cat = categories?.slice(1)
   const { colors, fSize, spacing } = useTheme();
   const styles = createStyles(colors, fSize, spacing);
   const [searchCategory, setSearchCategory] = useState("");
+  if(!categories) {
+    return(
+      <SafeAreaView style={styles.container} edges={['top','left','right']}>
+        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+          <Text>Loading...</Text>
+        </View>
+      </SafeAreaView>
+    )
+  }
+  
   return (
     <SafeAreaView style={styles.container} edges={['top','left','right']}>
       <Header header={"Category"} />
@@ -23,8 +37,8 @@ const Category = () => {
         placeHolder={"Search categories"}
       />
       <FlatList
-        data={Categories.splice(1)}
-        keyExtractor={(item) => item.id}
+        data={cat}
+        keyExtractor={(item) => item._id}
         numColumns={2}
         style={{}}
         showsVerticalScrollIndicator={false}

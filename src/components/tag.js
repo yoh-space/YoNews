@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, View, Text } from "react-native";
 import useTheme from "../store/useTheme";
-const Tag = ({ tagLabel, color, textColor, bgColor }) => {
+const Tag = ({ categoryName, color, textColor, bgColor }) => {
   const { colors, spacing, fSize } = useTheme();
   return (
     <View
@@ -23,7 +23,7 @@ const Tag = ({ tagLabel, color, textColor, bgColor }) => {
           ]}
         />
       )}
-      <Text style={{ color: textColor || colors.accentPrimary, fontSize: fSize.tag }}>{tagLabel}</Text>
+      <Text style={{ color: textColor || colors.accentPrimary, fontSize: fSize.tag }}>{categoryName}</Text>
     </View>
   );
 };

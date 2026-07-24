@@ -10,11 +10,16 @@ import SearchInput from "../../components/searchInput";
 import Card from "../../components/card";
 import ListView from "../../components/listView";
 import DATA from "../../data/data";
+import { useQuery } from "convex/react";
+import { api } from "../../../convex/_generated/api";
+
 const Index = () => {
   const [searchText, setSearchText] = useState("");
   const { colors, fSize, spacing, toggleTheme, themeMode } = useTheme();
   const styles = createStyles(colors, fSize, spacing);
   const Name = themeMode === "light" ? "moon-outline" : "sunny-outline";
+  const articles = useQuery(api.articles.getAllArticles);
+
   const notification = () => {
     Alert.alert("Notifications", "You have no new notifications.");
   };
@@ -30,6 +35,16 @@ const Index = () => {
       </Pressable>
     </View>
   );
+
+  if(!articles) {
+    return(
+      <SafeAreaView style={styles.container} edges={["top", "left", "right"]}>
+        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+          <Text>Loading...</Text>
+        </View>
+      </SafeAreaView>
+    )
+  }
   return (
     <SafeAreaView style={styles.container} edges={["top", "left", "right"]}>
       <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
@@ -43,8 +58,8 @@ const Index = () => {
         </View>
       </View>
       <FlatList
-        data={DATA}
-        keyExtractor={(item) => item.id}
+        data={articles}
+        keyExtractor={(item) => item._id}
         ListHeaderComponent={
           <>
             <SearchInput value={searchText} onChangeText={setSearchText} placeHolder={'Search news, topics, authors...'} />

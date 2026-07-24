@@ -3,9 +3,9 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import useTheme from '../store/useTheme';
 
 
-export default function Icon({name, action}) {
+export default function Icon({name, action, iconBackground}) {
     const { colors, fSize, spacing } = useTheme();
-    const styles = createStyles(colors, fSize, spacing);
+    const styles = createStyles(iconBackground, colors, fSize, spacing);
     return (
         <View style={styles.container}>
             <Ionicons name={name} size={16} color={colors.textSecondary} onPress={action} />
@@ -13,12 +13,12 @@ export default function Icon({name, action}) {
     );
 }
 
-const createStyles = (colors, fSize, spacing) => StyleSheet.create({
+const createStyles = (iconBackground, colors, fSize, spacing) => StyleSheet.create({
     container: {
-        backgroundColor: colors.surfaceSecondary,
+        backgroundColor: iconBackground  || colors.surfaceSecondary,
         height: 30,
         width: 30,
-        borderRadius: 10,
+        borderRadius: spacing.m,
         margin: spacing.s,
         alignSelf: 'flex-end',
         justifyContent: 'center',

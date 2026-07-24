@@ -4,12 +4,20 @@ import { setItem, getItem, removeItem } from "../utils/storage";
 const useBookmarkStore = create((set, get) => ({
   bookmarks: [],
   setBookmarks: (bookmarks) => set({bookmarks: bookmarks}),
+  loadBookmarks: async () => {
+    const storedBookmarks = await getItem("bookmarks");
+    if (storedBookmarks) {
+      set({ bookmarks: JSON.parse(storedBookmarks) });
+    }
+  },
+  isBookmarked: (articleId) => {
+    return get().bookmarks.some((article) => article._id === articleId);
+  },
   addBookmark: async (article) => {
     const updatedBookmarks = [
       ...get().bookmarks,
       article,
     ];
-
     set({
       bookmarks: updatedBookmarks,
     });
@@ -19,7 +27,7 @@ const useBookmarkStore = create((set, get) => ({
 
   removeBookmark: async (articleId) => {
     const updatedBookmarks = get().bookmarks.filter(
-      (article) => article.id !== articleId
+      (article) => article._id !== articleId
     );
 
     set({
