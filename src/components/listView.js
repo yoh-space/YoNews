@@ -66,7 +66,7 @@ const ListView = ({item}) => {
 
 
       <View style={styles.content}>
-        <Tag tagLabel={item.tagLabel} />
+        <Tag categoryName={item.categoryName} />
 
         <Text
           numberOfLines={2}
