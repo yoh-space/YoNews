@@ -17,12 +17,8 @@ const ListView = ({item}) => {
   const handleBookmark = () => {
     if (isBookmarked(item._id)) {
       removeBookmark(item._id);
-      console.log(`Removed bookmark for: ${item.title}`);
-      setBookmarked(false);
     } else {
       addBookmark(item);
-      console.log(`Added bookmark for: ${item.title}`);
-      setBookmarked(true);
     }
   };
 

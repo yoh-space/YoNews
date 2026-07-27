@@ -7,7 +7,6 @@ import Tag from "./tag";
 import Caption from "./caption";
 
 const Card = ({ Title, Image }) => {
-  console.log("Card component received props:", { Title, Image });
   const { colors, fSize, spacing } = useTheme();
   return (
     <Pressable
@@ -16,7 +15,7 @@ const Card = ({ Title, Image }) => {
     >
       <ImageBackground 
         source={{ uri: Image }} 
-        onError={(e) => console.log("Image error:", e.nativeEvent)}
+        onError={(e) => console.log("Image error:", e)}
         resizeMode="cover"
         style={[styles.imageBackground]}>
         <LinearGradient

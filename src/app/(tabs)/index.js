@@ -29,7 +29,7 @@ const Index = () => {
       <Text style={{ fontSize: fSize.newsListTitle , fontFamily: 'Syne_700Bold'}}>Latest Stories</Text>
       <Pressable onPress={() => {
         // Handle "See all" press action here
-        console.log("See all pressed");
+        alert("See all pressed");
       }}>
       <Text style={{ fontSize: fSize.tagLabel , fontFamily: 'Syne_400Bold', color: colors.accentPrimary}}>See all</Text>
       </Pressable>
