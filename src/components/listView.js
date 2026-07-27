@@ -6,23 +6,19 @@ import useTheme from "../store/useTheme";
 import { Ionicons } from "@expo/vector-icons";
 import { Text } from "react-native";
 import useBookmarkStore from "../store/useBookmarkStore";
-import { getItem } from "../utils/storage";
-
+import { router } from "expo-router";
 const ListView = ({item}) => {
   const { colors, fSize, spacing } = useTheme();
   const { addBookmark, removeBookmark,isBookmarked } = useBookmarkStore();
 
-  const [bookmarked, setBookmarked] = useState(false);
 
   const handleBookmark = () => {
     if (isBookmarked(item._id)) {
       removeBookmark(item._id);
       console.log(`Removed bookmark for: ${item.title}`);
-      setBookmarked(false);
     } else {
       addBookmark(item);
       console.log(`Added bookmark for: ${item.title}`);
-      setBookmarked(true);
     }
   };
 
@@ -36,7 +32,7 @@ const ListView = ({item}) => {
         },
       ]}
     >
-    <Pressable onPress={() => console.log(`Pressed on article: ${title}`)}>
+    <Pressable onPress={() => router.push(`/article/${item._id}`)}>
       <Image
         source={{ uri: item.imageUrl }}
         style={[

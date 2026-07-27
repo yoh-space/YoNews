@@ -18,3 +18,13 @@ export const createArticles = mutation({
   },
 
 });
+
+export const getArticleById = query({
+  args:{
+    id: v.id("articles"),
+  },
+  handler: async (ctx, args) =>{
+    const article = await ctx.db.get("articles", args.id);
+    return article;
+  }
+})
