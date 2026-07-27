@@ -2,51 +2,12 @@ import { Tabs } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import { SystemBars } from "react-native-edge-to-edge";
 import useTheme from "../../store/useTheme";
-import { useEffect } from "react";
-import {getItem} from '../../utils/storage';
-import {
-  useFonts,
-  Syne_400Regular,
-  Syne_500Medium,
-  Syne_600SemiBold,
-  Syne_700Bold,
-  Syne_800ExtraBold,
-} from "@expo-google-fonts/syne";
 
-import { ConvexProvider, ConvexReactClient } from "convex/react";
-
-const convex = new ConvexReactClient(process.env.EXPO_PUBLIC_CONVEX_URL);
-
-export default function Layout() {
-  const [fontsLoaded] = useFonts({
-    Syne_400Regular,
-    Syne_500Medium,
-    Syne_600SemiBold,
-    Syne_700Bold,
-    Syne_800ExtraBold,
-  });
-  const { colors, setTheme } = useTheme();
-
-  useEffect(()=>{
-    const LoadTheme = async () => {
-      const storedTheme = await getItem('themeMode');
-      if(storedTheme)
-      {
-        setTheme(storedTheme);
-      }
-      else{
-        return null; // No stored theme found, do nothing
-      }
-    }
-    LoadTheme();
-  }, []);
-
-  if (!fontsLoaded) {
-    return null;
-  }
+export default function TabLayout() {
+  const { colors } = useTheme();
 
   return (
-    <ConvexProvider client={convex}>
+    <>
       <SystemBars style={colors.statusBarStyle} />
       <Tabs
         screenOptions={{
@@ -75,7 +36,7 @@ export default function Layout() {
         <Tabs.Screen
           name="category"
           options={{
-            title:"Categories",
+            title: "Categories",
             headerShown: false,
             tabBarIcon: ({ color, focused }) => (
               <Ionicons
@@ -115,6 +76,6 @@ export default function Layout() {
           }}
         />
       </Tabs>
-    </ConvexProvider>
+    </>
   );
 }
