@@ -1,10 +1,6 @@
-import {useState} from "react";
 import { StyleSheet, ScrollView, Text, Pressable } from "react-native";
 import useTheme from "../store/useTheme";
-import { Categories } from "../data/categories";
-
-const Chips = () => {
-  const [selectedCategory, setSelectedCategory] = useState(Categories[0].categoryName);
+const Chips = ({categories, selectedCategory, setSelectedCategory}) => {
   const { colors, fSize, spacing } = useTheme();
 
   return (
@@ -12,9 +8,9 @@ const Chips = () => {
       horizontal
       showsHorizontalScrollIndicator={false}
       style={{marginTop: spacing.m,marginBottom: spacing.m, flexGrow: 0}}>
-      {Categories.map((cat) => (
+      {categories.map((cat) => (
         <Pressable 
-          key={cat.id}
+          key={cat._id}
           onPress={()=> setSelectedCategory(cat.categoryName)}
           style={{
             backgroundColor: selectedCategory === cat.categoryName ? colors.accentPrimary : colors.surfaceSeondary,

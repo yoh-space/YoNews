@@ -6,7 +6,8 @@
       categoryName: "Gadgets",
       title: "Apple Unveils New iPhone 15 with Revolutionary Features",
       image:
-        "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9"    },
+        "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9"    
+      },
     {
       id: "2",
       readTime: "3 min read",

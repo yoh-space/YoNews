@@ -6,15 +6,22 @@ import { LinearGradient } from "expo-linear-gradient";
 import Tag from "./tag";
 import Caption from "./caption";
 
-const Card = ({ Title, Image }) => {
+const Card = ({ item }) => {
   const { colors, fSize, spacing } = useTheme();
+  if(!item) {
+    return (
+      <View style={[styles.pressable, { borderRadius: spacing.xx, backgroundColor: colors.surfaceSeondary, justifyContent: 'center', alignItems: 'center' }]}>
+        <HeroTitle Title={"No articles found"} noItemFound={true} />
+      </View>
+    )
+  }
   return (
     <Pressable
       onPress={() => alert("Card Pressed")}
       style={[styles.pressable, { borderRadius: spacing.xx }]}
     >
       <ImageBackground 
-        source={{ uri: Image }} 
+        source={{ uri: item.imageUrl }} 
         onError={(e) => console.log("Image error:", e)}
         resizeMode="cover"
         style={[styles.imageBackground]}>
@@ -24,7 +31,7 @@ const Card = ({ Title, Image }) => {
         >
           <Tag categoryName={"LIVE"} textColor="white" bgColor='red' />
           <View style={styles.contents}>
-            <HeroTitle Title={Title} />
+            <HeroTitle Title={item.title} />
             <Caption author={"John Doe"} readTime={"5 min read"} />
           </View>
         </LinearGradient>

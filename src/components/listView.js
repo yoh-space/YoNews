@@ -7,6 +7,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { Text } from "react-native";
 import useBookmarkStore from "../store/useBookmarkStore";
 import { router } from "expo-router";
+import { ago } from "../utils/ago";
 const ListView = ({item}) => {
   const { colors, fSize, spacing } = useTheme();
   const { addBookmark, removeBookmark,isBookmarked } = useBookmarkStore();
@@ -60,7 +61,7 @@ const ListView = ({item}) => {
         </Text>
 
         <View style={styles.footer}>
-          <Caption ago={item.ago} color={colors.textSecondary || "#A9A9A9"} readTime={item.readTime} />
+          <Caption ago={ago(item._creationTime)} color={colors.textSecondary || "#A9A9A9"} readTime={item.readTime} />
 
           <Ionicons
             onPress={handleBookmark}

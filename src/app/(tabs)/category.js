@@ -4,10 +4,10 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import useTheme from "../../store/useTheme";
 import Header from "../../components/header";
 import SearchInput from "../../components/searchInput";
-import { Categories } from "../../data/categories";
 import CategoryCard from "../../components/categoryCard";
 import { api } from "../../../convex/_generated/api";
 import { useQuery } from "convex/react";
+import { router}  from "expo-router";
 
 const Category = () => {
   const categories = useQuery(api.categories.getAllCategories);
@@ -46,7 +46,7 @@ const Category = () => {
         columnWrapperStyle={{ justifyContent: "space-between", gap: spacing.m }}
         renderItem={({ item }) => (
           <Pressable
-            onPress={() => Alert.alert(`You selected ${item.categoryName}`)}
+            onPress={() => router.push(`/categories/${item.categoryName}`)}
             style={{
               backgroundColor: colors.surfaceBg,
               padding: spacing.xx,

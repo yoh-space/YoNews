@@ -5,7 +5,7 @@ export const FontSize = {
     bodylarge: 16,
     newsListTitle: 20,
     carouselTitle: 24,
-    header: 30,
+    header: 26,
     xxx: 36,
 } 
 

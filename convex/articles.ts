@@ -28,3 +28,13 @@ export const getArticleById = query({
     return article;
   }
 })
+
+export const getArticlesByCategory = query({
+  args: {
+    categoryName: v.string(),
+  },
+  handler: async (ctx,args)=>{
+    const articles = await ctx.db.query("articles").withIndex("by_categoryName", (q) => q.eq("categoryName", args.categoryName)).collect();
+    return articles;
+  }
+})

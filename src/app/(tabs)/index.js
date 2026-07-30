@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { StyleSheet, View, Alert, FlatList, Text, Pressable } from "react-native";
 import Date from "../../components/date";
 import useTheme from "../../store/useTheme";
@@ -19,11 +19,28 @@ const Index = () => {
   const styles = createStyles(colors, fSize, spacing);
   const Name = themeMode === "light" ? "moon-outline" : "sunny-outline";
   const articles = useQuery(api.articles.getAllArticles);
+  const categories = useQuery(api.categories.getAllCategories)
+  const [ selectedCategory, setSelectedCategory] = useState();
+  const [newCat, setNewCat] = useState([]);
+  const AllCategories = {
+    _id: "all",
+    categoryName: "All",
+  }
+  useEffect(() => {
+    if (categories && categories.length > 0) {
+      setSelectedCategory("All");
+      const newCat = [AllCategories, ...categories]
+      setNewCat(newCat);
+
+    }
+  }, [categories]);
+
+  const filteredArticles = selectedCategory === "All" ? articles : articles?.filter((article) => article.categoryName === selectedCategory)
 
   const notification = () => {
     Alert.alert("Notifications", "You have no new notifications.");
   };
-  const heroNews = DATA[0];
+  const heroNews = filteredArticles?.[0];
   const ListHeader = () => (
     <View style={styles.headerText}>
       <Text style={{ fontSize: fSize.newsListTitle , fontFamily: 'Syne_700Bold'}}>Latest Stories</Text>
@@ -36,7 +53,8 @@ const Index = () => {
     </View>
   );
 
-  if(!articles) {
+
+  if(!articles || !categories) {
     return(
       <SafeAreaView style={styles.container} edges={["top", "left", "right"]}>
         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
@@ -58,13 +76,20 @@ const Index = () => {
         </View>
       </View>
       <FlatList
-        data={articles}
+        data={filteredArticles}
         keyExtractor={(item) => item._id}
+        ListEmptyComponent={() => (
+          <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+            <Text style={{ color: colors.textSecondary, fontSize: fSize.body }}>
+              No articles found for the selected category.
+            </Text>
+          </View>
+        )}
         ListHeaderComponent={
           <>
             <SearchInput value={searchText} onChangeText={setSearchText} placeHolder={'Search news, topics, authors...'} />
-            <Chips />
-            <Card Title={heroNews.title} Image={heroNews.image} />
+            <Chips categories={newCat} selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />
+            <Card item={heroNews} />
             <ListHeader />
           </>
         }
