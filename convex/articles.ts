@@ -9,15 +9,43 @@ export const getAllArticles = query({
   },
 });
 
-export const createArticles = mutation({
-  handler: async (ctx) => {
-    for( let i = 0; i < DATA.length; i++) {
-      ctx.db.insert("articles", DATA[i]);
-    }
-    return "All articles created successfully";
+export const createArticle = mutation({
+  args: {
+    title: v.string(),
+    content: v.string(),
+    imageUrl: v.optional(v.string()),
+    categoryName: v.string(),
+  },
+  handler: async (ctx, args) => {
+    const newArticle = await ctx.db.insert("articles", args);
+    return newArticle;
   },
 
 });
+
+export const updateArticle = mutation({
+  args: {
+    id: v.id("articles"),
+    title: v.optional(v.string()),
+    content: v.optional(v.string()),
+    imageUrl: v.optional(v.string()),
+    categoryName: v.optional(v.string()),
+  },
+  handler: async (ctx, args) => {
+    const updatedArticle = await ctx.db.patch("articles", args.id, args);
+    return updatedArticle;
+  },
+});
+
+export const deleteArticle = mutation({
+  args: {
+    id: v.id("articles"),
+  },
+  handler: async (ctx, args) => {
+    const deletedArticle = await ctx.db.delete("articles", args.id);
+    return deletedArticle;
+  }
+})
 
 export const getArticleById = query({
   args:{
