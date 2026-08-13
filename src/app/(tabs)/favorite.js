@@ -7,10 +7,19 @@ import Chips from "../../components/chips";
 import ListView from "../../components/listView";
 import useBookmarkStore from "../../store/useBookmarkStore";
 const Favorite = () => {
-  const articleLength = 2;
   const { colors, fSize, spacing } = useTheme();
   const styles = createStyles(colors, fSize, spacing);
   const { bookmarks, removeBookmark, addBookmark,loadBookmarks } = useBookmarkStore();
+  const articleLength = bookmarks.length;
+  const [selectedCategory, setSelectedCategory] = useState("All");
+  const cats = [... new Set(bookmarks.map((item) => item.categoryName))];
+  const allCategories = [{_id: "all", categoryName: "All"}, ...cats.map((cat) => ({_id: cat, categoryName: cat}))];
+  if(bookmarks.length === 0 && selectedCategory !== "All"){
+    setSelectedCategory("All")
+  }
+
+  const filteredBookmarks = selectedCategory === "All" ? bookmarks : bookmarks.filter((item) => item.categoryName === selectedCategory);
+
 
   useEffect(() => {
     loadBookmarks();
@@ -21,9 +30,9 @@ const Favorite = () => {
       <Text style={{ fontSize: fSize.caption, color: colors.textSecondary }}>
         {articleLength} articles ready to read
       </Text>
-      <Chips />
+      <Chips categories={allCategories} setSelectedCategory={setSelectedCategory} selectedCategory={selectedCategory} />
       {
-        bookmarks.length === 0 && (
+        filteredBookmarks.length === 0 && (
             <View style={{flex: 1, alignItems: 'center', justifyContent:'center'
             }}>
                 <Text style={{color: colors.textSecondary, fontSize: fSize.body}}>No bookmark found</Text>
@@ -31,7 +40,7 @@ const Favorite = () => {
         )
       }
       <FlatList
-        data={bookmarks}
+        data={filteredBookmarks}
         keyExtractor={(item) => item._id}
         renderItem={({ item }) => {
           return (
