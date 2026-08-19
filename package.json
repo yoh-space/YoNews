@@ -17,6 +17,7 @@
     "@react-navigation/drawer": "^7.9.8",
     "check": "^1.0.0",
     "convex": "^1.42.1",
+    "date-fns": "^4.4.0",
     "expo": "~54.0.33",
     "expo-blur": "~15.0.8",
     "expo-constants": "~18.0.13",

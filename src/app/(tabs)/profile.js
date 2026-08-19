@@ -20,7 +20,7 @@ const Profile = () => {
     const handleSettingsPress = () => {
         Alert.alert('Settings', 'Settings button pressed!');
     }
-    console.log(`preferences: ${JSON.stringify(preferences)}`);
+    const getPreferences = preferences();
     if(!users) {
         return (
             <SafeAreaView style={styles.container} edges={['top', 'left', 'right']}>
@@ -43,7 +43,7 @@ const Profile = () => {
                 <StatusCard readCount={'12d'} statusText={'Streak'} />
             </View>
             <Text style={{color: colors.textSecondary, fontFamily:'Syne_700Bold', fontSize: fSize.caption, marginTop: spacing.l }}>PREFERENCES</Text>
-            <OptionList preferences={preferences} />
+            <OptionList preferences={getPreferences} />
         </SafeAreaView>
     );
 }

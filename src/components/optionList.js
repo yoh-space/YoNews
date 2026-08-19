@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, ScrollView, Text } from "react-native";
+import { StyleSheet, View, ScrollView, Text, Pressable } from "react-native";
 import Icon from "./icon";
 import useTheme from "../store/useTheme";
 
@@ -16,8 +16,9 @@ const OptionList = ({ preferences }) => {
       showsVerticalScrollIndicator={false}
     >
       {preferences.map((pref, index) => (
-        <View
+        <Pressable
           key={index}
+          onPress={pref?.action}
           style={{
             flexDirection: "row",
             alignItems: "center",
@@ -31,7 +32,7 @@ const OptionList = ({ preferences }) => {
           <Icon
             name={pref.iconName}
             color={colors.textPrimary}
-            action={pref.action}
+            size={20}
           />
           <View
             style={{ alignItems: "flex-start", flex: 1, marginLeft: spacing.m }}
@@ -48,16 +49,15 @@ const OptionList = ({ preferences }) => {
             <Text
               style={{ fontSize: fSize.caption, color: colors.textSecondary }}
             >
-              {pref.status}
+              {pref?.status}
             </Text>
           </View>
           <Icon
             name="chevron-forward-outline"
             color={colors.textSecondary}
-            action={pref.action}
             iconBackground={'transparent'}
           />
-        </View>
+        </Pressable>
       ))}
     </ScrollView>
   );

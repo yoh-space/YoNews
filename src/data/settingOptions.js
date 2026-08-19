@@ -1,47 +1,48 @@
+import { useState } from "react";
+import useTheme from "../store/useTheme";
+import {Alert} from 'react-native'
+import {router } from 'expo-router'
 
-export const preferences = [
+export const preferences = () => {
+  const { themeMode, toggleTheme } = useTheme();
+  const isDark = themeMode === "dark";
+  const [isEnable, setIsEnable] = useState(false);
+  return [
     {
-        iconName: 'notifications-outline',
-        label: 'Notifications',
-        action: () => {
-        },
-        status: 'Enabled',
+      iconName: isEnable ? "notifications-outline" : "notifications-off-outline",
+      label: "Notifications",
+      action: () => {
+        setIsEnable(!isEnable);
+      },
+      status: isEnable ? "Enabled" : "Disabled",
     },
     {
-        iconName: 'moon-outline',
-        label: 'Dark Mode',
-        action: () => {
-        },
-        status: 'Enabled',
+      iconName: isDark ? "moon-outline" : "sunny-outline",
+      label: "Dark Mode",
+      action: () => {
+        toggleTheme();
+      },
+      status: isDark ? "Enabled" : "Disabled",
     },
     {
-        iconName: 'bookmark-outline',
-        label: 'Reading list',
-        status: 'Enabled',
-        action: () => {
-        },
+      iconName: "bookmark-outline",
+      label: "Reading list",
+      action: () => { router.push('./favorite')},
     },
     {
-        iconName: 'sheild-checkmark-outline',
-        label: 'Privacy Policy',
-        action: () => {
-        },
-        status: 'Enabled',
+      iconName: "shield-outline",
+      label: "Privacy Policy",
+      action: () => {Alert.alert('Privacy Policy')},
     },
     {
-        iconName: 'information-circle-outline',
-        label: 'About us',
-        action: () => {
-        },
-        status: 'Enabled',
+      iconName: "information-circle-outline",
+      label: "About us",
+      action: () => {Alert.alert('About us')},
     },
     {
-        iconName: 'log-out-outline',
-        label: 'Logout',
-        action: () => {
-        },
-        status: 'Enabled',
-    }
-    
-]
-
+      iconName: "log-out-outline",
+      label: "Logout",
+      action: () => {},
+    },
+  ];
+};
