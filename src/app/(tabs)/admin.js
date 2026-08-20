@@ -57,13 +57,13 @@ const Admin = () => {
                 fontSize: fSize.bodylarge,
               }}
             >
-              {sec.label}
+              {sec.label} 
             </Text>
           </Pressable>
         ))}
       </View>
 
-      {section === "article" ? <ArticleSection /> : <CategorySection />}
+     {section === "article" ? <ArticleSection /> : <CategorySection />}
     </SafeAreaView>
   );
 };

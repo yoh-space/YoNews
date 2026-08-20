@@ -7,7 +7,8 @@ const CatListView = ({ item }) => {
   const { colors, fSize, spacing } = useTheme();
 
   const handleEdit = (data) => {};
-  const handleDelete = () => {};
+  const handleDelete = (data) => {};
+  const handleCreate = () => {};
 
   return (
     <View
@@ -26,7 +27,7 @@ const CatListView = ({ item }) => {
           padding: spacing.m,
           gap: spacing.x,
         }}
-            onPress={() => router.push(`/categories/${item.categoryName}`)}
+        onPress={() => router.push(`/categories/${item.categoryName}`)}
       >
         <Ionicons name={item.iconName || "newspaper"} size={40} />
         <Text
@@ -43,24 +44,20 @@ const CatListView = ({ item }) => {
       </Pressable>
 
       <View style={styles.footer}>
-        <Pressable onPress={()=>{}} style={{flexDirection: 'row', gap: spacing.m}}>
-          <Text style={{color: colors.success}}>Edit</Text>
-          <Ionicons
-            onPress={handleEdit(item)}
-            name={"pencil"}
-            size={20}
-            color={colors.success}
-          />
+        <Pressable
+          onPress={() => handleEdit(item)}
+          style={{ flexDirection: "row", gap: spacing.m }}
+        >
+          <Text style={{ color: colors.success }}>Edit</Text>
+          <Ionicons name={"pencil"} size={20} color={colors.success} />
         </Pressable>
 
-        <Pressable onPress={()=>{}} style={{flexDirection: 'row', gap: spacing.m}}>
-          <Text style={{color: colors.danger}}>Delete</Text>
-          <Ionicons
-            onPress={handleDelete}
-            name={"trash"}
-            size={20}
-            color={colors.danger}
-          />
+        <Pressable
+          onPress={() => handleDelete(item)}
+          style={{ flexDirection: "row", gap: spacing.m }}
+        >
+          <Text style={{ color: colors.danger }}>Delete</Text>
+          <Ionicons name={"trash"} size={20} color={colors.danger} />
         </Pressable>
       </View>
     </View>
@@ -88,9 +85,9 @@ const styles = StyleSheet.create({
   footer: {
     width: "100%",
     flexDirection: "row",
-    justifyContent: "space-around", 
-    alignItems: "center", 
-    paddingHorizontal: 10, 
+    justifyContent: "space-around",
+    alignItems: "center",
+    paddingHorizontal: 10,
     marginTop: 30,
   },
 });

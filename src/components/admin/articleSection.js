@@ -1,4 +1,3 @@
-import React from "react";
 import { StyleSheet, View, Text, FlatList, Pressable } from "react-native";
 import useTheme from "../../store/useTheme";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -10,6 +9,7 @@ import { Ionicons } from "@expo/vector-icons";
 const ArticleSection = () => {
   const articles = useQuery(api.articles.getAllArticles);
   const { colors, fSize, spacing } = useTheme();
+  const handleCreate = () => {};
 
   if (!articles) {
     <SafeAreaView
@@ -37,7 +37,7 @@ const ArticleSection = () => {
         keyExtractor={(item) => item._id}
         renderItem={({ item }) => <ListView item={item} />}
       />
-      <Pressable style={[styles.fab,{backgroundColor: colors.accentPrimary}]}>
+      <Pressable onPress={handleCreate} style={[styles.fab,{backgroundColor: colors.accentPrimary}]}>
         <Ionicons name="add" size={40} color={'white'}/>
       </Pressable>
     </SafeAreaView>
